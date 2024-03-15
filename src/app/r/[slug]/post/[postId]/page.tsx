@@ -25,6 +25,7 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
     `post:${params.postId}`
   )) as CachedPost;
 
+  console.log(cachedPost, "CASRD POST");
   let post: (Post & { votes: Vote[]; author: User }) | null = null;
 
   if (!cachedPost) {
