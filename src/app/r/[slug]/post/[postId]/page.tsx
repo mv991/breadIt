@@ -8,6 +8,7 @@ import { formatTimeToNow } from "@/lib/utils";
 import { CachedPost } from "@/types/redis";
 import { Post, User, Vote } from "@prisma/client";
 import { ArrowBigDown, ArrowBigUp, Loader2 } from "lucide-react";
+
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
@@ -21,10 +22,10 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
-  // const cachedPost = (await redis.hgetall(
-  //   `post:${params.postId}`
-  // )) as CachedPost;
-
+  const cachedPost1 = (await redis.hgetall(
+    `post:${params.postId}`
+  )) as CachedPost;
+  console.log(redis, cachedPost1, "cahed POdhjhkdjhkrhkhrjkg");
   const cachedPost = {
     id: "",
     authorUsername: "",
