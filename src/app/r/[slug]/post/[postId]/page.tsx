@@ -21,11 +21,17 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
-  const cachedPost = (await redis.hgetall(
-    `post:${params.postId}`
-  )) as CachedPost;
+  // const cachedPost = (await redis.hgetall(
+  //   `post:${params.postId}`
+  // )) as CachedPost;
 
-  console.log(cachedPost, "CASRD POST");
+  const cachedPost = {
+    id: "",
+    authorUsername: "",
+    createdAt: "",
+    title: "",
+    content: "",
+  };
   let post: (Post & { votes: Vote[]; author: User }) | null = null;
 
   if (!cachedPost) {
