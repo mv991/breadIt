@@ -70,9 +70,9 @@ export async function PATCH(req: Request) {
             createdAt: post.createdAt,
           }
 
-            const stringifieldPayload = JSON.stringify(cachePayload)
+  
         //  @ts-expect-error
-        await redis.hset(`post:${postId}`, stringifieldPayload) // Store the post data as a hash
+       await redis.hset(`post:${postId}`, 'data', JSON.stringify(cachePayload));
         }
 
         return new Response('OK')
@@ -108,9 +108,8 @@ export async function PATCH(req: Request) {
           createdAt: post.createdAt,
         }
 
-         const stringifieldPayload = JSON.stringify(cachePayload)
         //  @ts-expect-error
-        await redis.hset(`post:${postId}`, stringifieldPayload) // Store the post data as a hash
+        await redis.hset(`post:${postId}`, 'data', JSON.stringify(cachePayload)); // Store the post data as a hash
       }
 
       return new Response('OK')
@@ -142,8 +141,9 @@ export async function PATCH(req: Request) {
         currentVote: voteType,
         createdAt: post.createdAt,
       }
-
-     const x =  await redis.hset(`post:${postId}`, cachePayload) // Store the post data as a hash
+        
+        //  @ts-expect-error
+    await redis.hset(`post:${postId}`, 'data', JSON.stringify(cachePayload)); // Store the post data as a hash
     
     }
 
