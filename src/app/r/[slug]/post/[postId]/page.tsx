@@ -8,7 +8,7 @@ import { formatTimeToNow } from "@/lib/utils";
 import { CachedPost } from "@/types/redis";
 import { Post, User, Vote } from "@prisma/client";
 import { ArrowBigDown, ArrowBigUp, Loader2 } from "lucide-react";
-
+import { Redis } from "@upstash/redis";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
@@ -25,7 +25,11 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
   // const cachedPost1 = (await redis?.hGetAll(
   //   `post:${params.postId}`
   // )) as CachedPost;
-  await redis.get("ffd");
+  // @ts-ignore
+  const redis = new Redis({
+    url: process.env.REDIS_URL!,
+    token: process.env.REDIS_SECRET!,
+  });
   const cachedPost = {
     id: "",
     authorUsername: "",
