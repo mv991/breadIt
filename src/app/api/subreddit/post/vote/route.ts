@@ -127,6 +127,7 @@ export async function PATCH(req: Request) {
       if (vote.type === 'DOWN') return acc - 1
       return acc
     }, 0)
+   
 
     if (votesAmt >= CACHE_AFTER_UPVOTES) {
       const cachePayload: CachedPost = {
@@ -138,7 +139,8 @@ export async function PATCH(req: Request) {
         createdAt: post.createdAt,
       }
 
-      await redis.hset(`post:${postId}`, cachePayload) // Store the post data as a hash
+     const x =  await redis.hset(`post:${postId}`, cachePayload) // Store the post data as a hash
+     console.log(x,"X")
     }
 
     return new Response('OK')
