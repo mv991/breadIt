@@ -4,7 +4,6 @@ import PostVoteServer from "@/components/post-vote/PostVoteServer";
 import { buttonVariants } from "@/components/ui/Button";
 import { db } from "@/lib/db";
 import { formatTimeToNow } from "@/lib/utils";
-import { CachedPost } from "@/types/redis";
 import { Post, User, Vote } from "@prisma/client";
 import { ArrowBigDown, ArrowBigUp, Loader2 } from "lucide-react";
 import { Redis } from "@upstash/redis";
@@ -29,9 +28,8 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
     url: process.env.REDIS_URL!,
     token: process.env.REDIS_SECRET!,
   });
-  const cachedPost = (await redis.hgetall(
-    `post:${params.postId}`
-  )) as CachedPost;
+
+  const cachedPost = await redis?.hgetall(`post:${params.postId}`);
 
   let post: (Post & { votes: Vote[]; author: User }) | null = null;
 
