@@ -30,7 +30,7 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
     url: process.env.REDIS_URL!,
     token: process.env.REDIS_SECRET!,
   });
-  const cachedPost = (await redis?.hgetall(
+  const cachedPost = (await redis.hgetall(
     `post:${params.postId}`
   )) as CachedPost;
 
