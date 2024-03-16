@@ -1,9 +1,9 @@
-import {LucideProps,MessageSquare,User} from "lucide-react"
+import { LucideProps, MessageSquare, User } from 'lucide-react'
 
 export const Icons = {
-    user: User,
-    logo:(props:LucideProps) => (
-<svg {...props} viewBox='0 0 497 497'>
+  user: User,
+  logo: (props: LucideProps) => (
+    <svg {...props} viewBox='0 0 497 497'>
       <g>
         <path
           d='m392 30c-71.75 0-71.75-30-143.5-30l128.5 497h30c33.137 0 60-26.863 60-60v-228.526c18.555-18.938 30-44.867 30-73.474 0-57.99-47.01-105-105-105z'
@@ -51,6 +51,6 @@ export const Icons = {
       />
       <path d='M1 1h22v22H1z' fill='none' />
     </svg>
-
-  )
+  ),
+  commentReply: MessageSquare,
 }
