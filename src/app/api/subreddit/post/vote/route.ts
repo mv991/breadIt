@@ -1,13 +1,21 @@
 import { getAuthSession } from '@/lib/auth'
 import { db } from '@/lib/db'
-import { redis } from '@/lib/redis'
+// import { redis } from '@/lib/redis'
 import { PostVoteValidator } from '@/lib/validators/vote'
 import { CachedPost } from '@/types/redis'
+import { Redis } from '@upstash/redis'
 import { z } from 'zod'
 
 const CACHE_AFTER_UPVOTES = 1
 
 export async function PATCH(req: Request) {
+
+ const redis = new Redis({
+  url: process.env.REDIS_URL!,
+  token: process.env.REDIS_SECRET!,
+})
+
+ 
   try {
     const body = await req.json()
 
