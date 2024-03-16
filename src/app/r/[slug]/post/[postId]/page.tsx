@@ -21,15 +21,15 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
-  const cachedPost = (await redis?.hGetAll(
-    `post:${params.postId}`
-  )) as CachedPost;
-
-  // @ts-ignore
   const redis = new Redis({
     url: process.env.REDIS_URL!,
     token: process.env.REDIS_SECRET!,
   });
+  const cachedPost = (await redis?.hgetall(
+    `post:${params.postId}`
+  )) as CachedPost;
+
+  // @ts-ignore
 
   let post: (Post & { votes: Vote[]; author: User }) | null = null;
 
