@@ -1,6 +1,6 @@
 "use client";
 
-import { useCustomToast } from "@/hooks/use-custom-toast";
+import { useCustomToasts } from "@/hooks/use-custom-toasts";
 import { PostVoteRequest } from "@/lib/validators/vote";
 import { usePrevious } from "@mantine/hooks";
 import { VoteType } from "@prisma/client";
@@ -23,7 +23,7 @@ const PostVoteClient = ({
   initialVotesAmt,
   initialVote,
 }: PostVoteClientProps) => {
-  const { loginToast } = useCustomToast();
+  const { loginToast } = useCustomToasts();
   const [votesAmt, setVotesAmt] = useState<number>(initialVotesAmt);
   const [currentVote, setCurrentVote] = useState(initialVote);
   const prevVote = usePrevious(currentVote);

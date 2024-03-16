@@ -6,7 +6,7 @@ import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { startTransition } from "react";
 import { useToast } from "../hooks/use-toast";
-import { useCustomToast } from "../hooks/use-custom-toast";
+import { useCustomToasts } from "../hooks/use-custom-toasts";
 
 interface SubscribeLeaveToggleProps {
   isSubscribed: boolean;
@@ -20,7 +20,7 @@ const SubscribeLeaveToggle = ({
   subredditName,
 }: SubscribeLeaveToggleProps) => {
   const { toast } = useToast();
-  const { loginToast } = useCustomToast();
+  const { loginToast } = useCustomToasts();
   const router = useRouter();
 
   const { mutate: subscribe, isLoading: isSubLoading } = useMutation({

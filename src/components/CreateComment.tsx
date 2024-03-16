@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { toast } from "@/hooks/use-toast";
 import { CommentRequest } from "@/lib/validators/comment";
 
-import { useCustomToast } from "@/hooks/use-custom-toast";
+import { useCustomToasts } from "@/hooks/use-custom-toasts";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
@@ -20,7 +20,7 @@ interface CreateCommentProps {
 const CreateComment: FC<CreateCommentProps> = ({ postId, replyToId }) => {
   const [input, setInput] = useState<string>("");
   const router = useRouter();
-  const { loginToast } = useCustomToast();
+  const { loginToast } = useCustomToasts();
 
   const { mutate: comment, isLoading } = useMutation({
     mutationFn: async ({ postId, text, replyToId }: CommentRequest) => {
