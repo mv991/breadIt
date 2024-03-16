@@ -10,11 +10,6 @@ import { Redis } from "@upstash/redis";
 interface UserAuthForm extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const UserAuthForm: FC<UserAuthForm> = ({ className, ...props }) => {
-  const redis = new Redis({
-    url: process.env.REDIS_URL!,
-    token: process.env.REDIS_SECRET!,
-  });
-  console.log(redis);
   const [loading, setIsLoading] = useState<boolean>(false);
   const { toast } = useToast();
   const loginWithGoogle = async () => {
