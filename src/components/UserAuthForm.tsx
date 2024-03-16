@@ -6,7 +6,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { Icons } from "./Icons";
 import { useToast } from "@/hooks/use-toast";
-import { Redis } from "@upstash/redis";
+
 interface UserAuthForm extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const UserAuthForm: FC<UserAuthForm> = ({ className, ...props }) => {
@@ -17,7 +17,6 @@ export const UserAuthForm: FC<UserAuthForm> = ({ className, ...props }) => {
     try {
       await signIn("google");
     } catch (error) {
-      console.log(error);
       toast({
         title: "There was an error",
         description: "There was an error loggin in with google",
