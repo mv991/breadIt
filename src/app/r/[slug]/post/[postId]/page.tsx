@@ -1,6 +1,6 @@
-import CommentsSection from "@/components/CommentsSection";
+// import CommentsSection from "@/components/CommentsSection";
 import EditorOutput from "@/components/EditorOutput";
-import PostVoteServer from "@/components/post-vote/PostVoteServer";
+// import PostVoteServer from "@/components/post-vote/PostVoteServer";
 import { buttonVariants } from "@/components/ui/Button";
 import { db } from "@/lib/db";
 // import { redis } from "@/lib/redis";
@@ -10,7 +10,7 @@ import { Post, User, Vote } from "@prisma/client";
 import { ArrowBigDown, ArrowBigUp, Loader2 } from "lucide-react";
 // import { Redis } from "@upstash/redis";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
+// import { Suspense } from "react";
 
 interface SubRedditPostPageProps {
   params: {
@@ -59,8 +59,7 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
   return (
     <div>
       <div className="h-full flex flex-col sm:flex-row items-center sm:items-start justify-between">
-        <Suspense fallback={<PostVoteShell />}>
-          {/* @ts-expect-error server component */}
+        {/* <Suspense fallback={<PostVoteShell />}>
           <PostVoteServer
             postId={post?.id ?? cachedPost.id}
             getData={async () => {
@@ -74,7 +73,7 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
               });
             }}
           />
-        </Suspense>
+        </Suspense> */}
 
         <div className="sm:w-0 w-full flex-1 bg-white p-4 rounded-sm">
           <p className="max-h-40 mt-1 truncate text-xs text-gray-500">
@@ -86,14 +85,14 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
           </h1>
 
           <EditorOutput content={post?.content ?? cachedPost.content} />
-          <Suspense
+          {/* <Suspense
             fallback={
               <Loader2 className="h-5 w-5 animate-spin text-zinc-500" />
             }
           >
-            {/* @ts-expect-error Server Component */}
+           
             <CommentsSection postId={post?.id ?? cachedPost.id} />
-          </Suspense>
+          </Suspense> */}
         </div>
       </div>
     </div>
